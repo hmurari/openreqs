@@ -1,0 +1,69 @@
+# Different states of the application.
+# To keep it simple, we are using pages as states.
+# User details are ignored in states.
+states:
+  - home:
+      description: "Home page description"
+      addl info: "Additional info"
+      actions:
+        - goto signup page:
+            what: Optional desciption of this step
+            how: Explain how or point what implements this.
+            return: signup
+        - goto login page:
+            return: login
+        - goto search page:
+            return: search
+        - search "keyword":
+            how: search(keyword)
+            return: search
+  - login:
+      description: "page description"
+      addl info: "Additional info"
+      actions:
+        - valid login with "username", "password":
+            how: login(username, password)
+            return: dashboard
+        - invalid login:
+            what: Maybe mention different types of invalid sign-ins
+            how: login(invalid)
+            return: login_failure
+  - signup:
+      description: "page description"
+      addl info: "Additional info"
+      actions:
+        - valid signup:
+            schema: 
+              $ref : '#/schemas/user'
+            how: signup()
+            return: signup_confirmation
+        - invalid signup:
+            schema: 
+              $ref : '#/schemas/user'
+            how: signup()
+            return: signup_failure
+  - dashboard:
+      description: "page description"
+      addl info: "Additional info"
+      actions:
+        - logout:
+            what: click logout
+            return: home
+        - search(keyword):
+            what: search for a keyword
+            return: search_results(keyword)
+  - search_results:
+      description: "page description"
+      addl info: "Additional info"
+  - search_result:
+      description: "page description"
+      addl info: "Additional info"
+  - cart:
+      description: "page description"
+      addl info: "Additional info"
+  - checkout:
+      description: "page description"
+      addl info: "Additional info"
+  - confirmation:
+      description: "page description"
+      addl info: "Additional info"
